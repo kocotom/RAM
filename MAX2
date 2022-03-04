@@ -1,0 +1,9 @@
+READ 1 # r_0 = i_1
+STORE 1 # r_1 = r_0, which means that r_1 == i_1
+READ 2 # r_0 = i_2
+SUB 1 # r_0 = i_2 - i_1
+JNEG 8 # if(i_2 - i_1 < 0) κ = 8;
+READ 2 # r_0 = i_2
+HALT # κ = 0, the program stops, output : i_2
+LOAD 1 # r_0 = i_1
+HALT # κ = 0, the program stops, output : i_1

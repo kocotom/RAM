@@ -281,15 +281,15 @@ class RAM():
         instruction = self.prog[self.PC]
         if(instruction.type == "direct"):
             if(len(self.inp) < instruction.arg):
-                print("Error on line " + str(instruction.linenum) + " : Runtime error. It is not possible to read from the input register " + str(instruction.arg) + ". There is no such a input register. Instruction : READ")
+                print("Error on line " + str(instruction.linenum) + " : Runtime error. It is not possible to read from the input register " + str(instruction.arg) + ". There is no such an input register. Instruction : READ")
                 exit(1)
             self.reg[0] = int(self.inp[instruction.arg - 1])
         elif(instruction.type == "indirect"):
             if(instruction.arg not in self.reg.keys()):
-                print("Error on line " + str(instruction.linenum) + " : Runtime error. Invalid indirect addressing. Since the data register " + str(instruction.arg) + " has not been used yet, it's value is equal to 0. However, there is no such a input register 0. Instruction : READ")
+                print("Error on line " + str(instruction.linenum) + " : Runtime error. Invalid indirect addressing. Since the data register " + str(instruction.arg) + " has not been used yet, it's value is equal to 0. However, there is no such an input register 0. Instruction : READ")
                 exit(1)
             if(self.reg[instruction.arg] not in range(1,(len(self.inp) + 1))):
-                print("Error on line " + str(instruction.linenum) + " : Runtime error. Invalid indirect addressing. The data register " + str(instruction.arg) + " contains a value " + str(self.reg[instruction.arg]) + ". However, there is no such a input register. Instruction : READ")
+                print("Error on line " + str(instruction.linenum) + " : Runtime error. Invalid indirect addressing. The data register " + str(instruction.arg) + " contains a value " + str(self.reg[instruction.arg]) + ". However, there is no such an input register. Instruction : READ")
                 exit(1)
             self.reg[0] = int(self.inp[self.reg[instruction.arg]])
         self.PC += 1
