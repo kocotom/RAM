@@ -36,8 +36,8 @@ class Scanner():
     def nextline(self):
         try:
             if(self.genline == None):
-                genline = self.generator()
-            self.line = next(genline)
+                self.genline = self.generator()
+            self.line = next(self.genline)
         except StopIteration:
             self.end = True
     def scan(self):
