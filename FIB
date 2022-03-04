@@ -1,0 +1,41 @@
+# fibonacciho číslo
+### in = (a), out(f(a)), kde f(0) = 0, f(1) = 1, f(n) = f(n-1) + f(n-2)
+READ 1
+STORE 4
+LOAD =0
+STORE 5
+LOAD =0
+STORE 1
+LOAD =1
+STORE 2
+LOAD 4
+SUB 5
+JZERO 15
+JUMP 17
+LOAD =0
+HALT
+LOAD 5
+ADD =1
+STORE 5
+LOAD 4
+SUB 5
+JZERO 24
+JUMP 26
+LOAD =1
+HALT
+LOAD 1
+ADD 2
+STORE 3
+LOAD 2
+STORE 1
+LOAD 3
+STORE 2
+LOAD 5
+ADD =1
+STORE 5
+LOAD 4
+SUB 5
+JZERO 40
+JUMP 26
+LOAD 3
+HALT

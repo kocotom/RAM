@@ -1,0 +1,18 @@
+# multiplication
+### in = (a, b), out = (a*b)
+###
+###
+READ 1
+STORE 1
+READ 2
+STORE 2
+LOAD 1
+JZERO 17 #
+SUB =1
+STORE 1
+LOAD 2
+ADD 3
+STORE 3
+JUMP 9
+LOAD 3
+HALT

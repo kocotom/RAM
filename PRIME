@@ -1,0 +1,45 @@
+# prime
+### in = (a), out = (1 iff a is prime else 0)
+READ 1
+SUB =2 # kontrola, zda vstup neni 1 nebo 0
+JNEG 7
+JUMP 9
+LOAD =0 # pokud ano, nejde o prvocisla, koncime
+HALT
+#############################################
+#
+#   r0 akk
+#   r1 arg
+#   r2 kandidat na delitele
+#
+#
+#
+READ 1
+STORE 1
+HALF # nejvyssi delitel ruzny od argumentu muze byt polovina
+STORE 2 
+#
+#   deleni 1 neprovadime
+#
+LOAD 2
+SUB =1 # test, zda neprovadime deleni 1
+JZERO 28
+JUMP 30
+LOAD =1
+HALT # pokud ano, koncime, jde o prvocislo
+#
+#   kontrola delitelnosti
+#
+LOAD 1
+SUB 2
+JNEG 37
+JUMP 34
+ADD 2
+JZERO 40
+JUMP 42
+LOAD =0
+HALT
+LOAD 2
+SUB =1
+STORE 2
+JUMP 24

@@ -1,0 +1,31 @@
+# POW2
+### in = (a), out = (a**2)
+READ 1 # nacti arg
+STORE 1 # uloz arg do r1
+JZERO 7 # pokud je arg 0, jdi na 7
+JUMP 9 # jdi na 9
+LOAD =0 # nacti 0
+HALT # skonci, 0**2 = 0
+LOAD 1 # nacti arg z r1
+STORE 2 # vloz arg do r2, nyni r1 = r2 = arg
+STORE 3 # vloz arg do r3, nyni r1 = r2 = r3 = arg
+LOAD 1
+SUB =1
+STORE 1
+#######
+#
+# r0 akumulator
+# r1 pocitadlo cyklu
+# r2 konstanta k pricitani
+# r3 vysledek
+#
+LOAD 2
+ADD 3
+STORE 3
+LOAD 1
+SUB =1
+STORE 1
+JZERO 30
+JUMP 22
+LOAD 3
+HALT
