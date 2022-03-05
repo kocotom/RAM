@@ -29,10 +29,12 @@ class Scanner():
         self.end = False
         self.token = None
         self.linenum = 0
+
     def generator(self):
         for line in sys.stdin:
             self.linenum += 1
-            yield list(line) if list(line)[-1] == '\n' else list(line) + ['\n']    
+            yield list(line) if list(line)[-1] == '\n' else list(line) + ['\n']   
+ 
     def nextline(self):
         try:
             if(self.genline == None):
@@ -40,6 +42,38 @@ class Scanner():
             self.line = next(self.genline)
         except StopIteration:
             self.end = True
+
+    def levenshteinDistance(self, s1, s2):
+        n = len(s1)
+        m = len(s2)
+        memory = [[0 for i in range(m+1)] for j in range(n+1)]
+        for i in range(0, n+1):
+            memory[i][m] = n - i
+        for j in range(0, m):
+            memory[n][j] = m - j
+        for i in range(0, n)[::-1]:
+            for j in range(0, m)[::-1]:
+                if(s1[i] == s2[j]):
+                    d = 0
+                else:
+                    d = 1
+                memory[i][j] = min(d + memory[i+1][j+1], 1 + memory[i+1][j], 1 + memory[i][j+1])
+        return memory[0][0]
+
+    def getSuggestion(self, word):
+        options = [(s, self.levenshteinDistance(s, word)) for s in keys]
+        bestScore = min([score for (_,score) in options])
+        if(bestScore > 3):
+            return ""
+        options = [s for (s,score) in options if score == bestScore]
+        suggestion = "" if not options else " Did you mean " + options[0]
+        if(len(options) > 1):
+            for i in options[1:]:
+                suggestion += " or " + i
+        if(options):
+            suggestion += "?"
+        return suggestion
+
     def scan(self):
         if(not self.line):
             self.nextline()
@@ -91,15 +125,16 @@ class Scanner():
                     if(char.isalpha()):
                         self.token.value = self.token.value + char
                     elif(char == ' '):
-                        if(self.token.value in keys):
+                        if(self.token.value.upper() in keys):
+                            self.token.value = self.token.value.upper()
                             return self.token
-                        print("Error on line " + str(self.linenum) + " : Scanner error. Unknown instruction : " + self.token.value)
+                        print("Error on line " + str(self.linenum) + " : Scanner error. Unknown instruction : " + self.token.value + "." + self.getSuggestion(self.token.value.upper()))
                         exit(1)
                     elif(char == '\n'):
                         self.line.insert(0, char)
                         return self.token
                     else:
-                        print("Error on line " + str(self.linenum) + " : Scanner error. Not a valid instruction : " + self.token.value + char)
+                        print("Error on line " + str(self.linenum) + " : Scanner error. Not a valid instruction : " + self.token.value + char + "." + self.getSuggestion(self.token.value.upper()))
                         exit(1)
             else:
                 print("Error on line " + str(self.linenum) + " : Scanner error. Invalid symbol : " + char)
