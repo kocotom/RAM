@@ -44,7 +44,7 @@ Some of the single argument instructions allow us to use all three types of argu
 
 A RAM program is a sequence of RAM instructions. The execution of a RAM program stops as soons as the program counter κ happens to equal 0 (which could by done by executing HALT, JUMP 0, JZERO 0, JNEG 0, JPOS 0) or as soon as the last instruction of the program is executed (and it does not change the program flow by JUMP, JZERO, JNEG, JPOS). The output of the RAM program corresponds to a value which is stored in the accumulator r_0 as soon as the program stops it's execution.
 
-This implementation allows us to use comments in the RAM program. Everything which is writter after a symbol # would be considered to be a comment.
+This implementation allows us to use comments in the RAM program. Everything which is written after a symbol # would be considered to be a comment.
 
 Note that each RAM instruction has to be writter on it's own line. Empty lines are allowed in this implementation. However, the internal representation of an empty line corresponds to a instruction PASS which could be seen in the debugging mode.
 
