@@ -12,11 +12,11 @@ There is a limited list of instructions which could be executed by a RAM. Most o
 - (X) : indirect memory access
 - =X : constant or a line number
 
-Some of the single argument instructions allow us to use all three types of arguments, while the others do not. Here is the list of all possible arguments which could be used in this RAM implementation.
+Some of the single argument instructions allow us to use all three types of arguments, while the others do not. Here is the list of all possible instructions which could be used in this RAM implementation.
 
 - HALT : stops execution of the code and sets the program counter κ to 0
 - HALF : divides a value in r_0 by 2 and floors the value
-- PASS : does nothing (this instruction is also a internal representation of an empty line)
+- PASS : does nothing (this instruction is also an internal representation of an empty line)
 
 - READ X : puts a value which is stored in the input register X to r0
 - READ (X) : gets a value Y which is stored in r_X and puts a value which is stored in the input register Y to r_0
